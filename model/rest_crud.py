@@ -47,15 +47,34 @@ def find_rest(rest_name):
             if rest_name == name.name: return name
     return None
 
+def find_rest_id(rest_id):
+    res = rest_ses.query(Restaurant).filter_by(id_=rest_id).all()
+    if res:
+        for name in res:
+            if rest_id == name.id_: return name
+    return None
+
+def find_rest_name_by_id(rest_id):
+    res = rest_ses.query(Restaurant).filter_by(id_ = rest_id).one()
+    return res if res else None
+
+
 #update
 def edit_rest_name(rest_name, new_name):
     rest = find_rest(rest_name)
     if rest:
         rest.name = new_name
         rest_ses.commit()
+
+def edit_rest_id(rest_id, new_name):
+    rest = find_rest_id(rest_id)
+    if rest:
+        rest.name = new_name
+        rest_ses.commit()
+
 #delete
-def delete_rest(rest_name):
-    rest = find_rest(rest_name)
+def delete_rest(rest_id):
+    rest = find_rest_id(rest_id)
     if rest:
         rest_ses.delete(rest)
         rest_ses.commit()
