@@ -6,6 +6,7 @@ from model.db_config import Rest_Base, Emp_Base, Restaurant, Menu, \
 Employee, Address, create_engine_db
 
 if __name__ == "__main__":
+    #create local engines
     rest_engine = create_engine_db(Rest_Base, 'restaurantmenu.db')
     emp_engine = create_engine_db(Emp_Base, 'employee.db')
 

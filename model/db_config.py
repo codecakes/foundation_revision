@@ -58,7 +58,7 @@ class Address(Emp_Base):
 
 
 def create_engine_db(Base, db_name):
-    #Create SQL engine config
+    #Create SQL engine config and DB if absent
     engine = create_engine('sqlite:///'+os.path.join('model', db_name))
     Base.metadata.create_all(engine)
     return engine

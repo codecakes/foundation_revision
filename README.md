@@ -2,8 +2,10 @@
 Revising Old web app development
 -----------------------------------------------------------------
 
+##Model Notes
 
-##CRUD Model Operations Using SQLAlchemy
+
+###CRUD Model Operations Using SQLAlchemy
 
 ```
 
