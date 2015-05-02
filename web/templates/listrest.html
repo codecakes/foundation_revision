@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" rel="dns-prefetch">
+  <meta name="description" content="SignUp with a new Restaurant">
+  <meta name="author" content="Akul M">
+</head>
+<body>
+  <div class="row">
+    <ul id="restaurants">
+      {% for r in rest_list %}
+      <li><h5>{{ r.name }}</h5></li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
