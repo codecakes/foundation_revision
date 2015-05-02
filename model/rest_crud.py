@@ -59,3 +59,8 @@ def delete_rest(rest_name):
     if rest:
         rest_ses.delete(rest)
         rest_ses.commit()
+
+##list all restaurant
+def listrest():
+    res = rest_ses.query(Restaurant).all()
+    return res
