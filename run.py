@@ -1,6 +1,7 @@
 import os, sys
 from flask import Flask, Response, request, render_template, redirect, \
 url_for, render_template_string
+from flask_bootstrap import Bootstrap
 
 from model.rest_crud import create_new_rest, \
 edit_rest_id, delete_rest, listrest, find_rest_name_by_id
@@ -12,7 +13,7 @@ app = Flask(__name__)
 #app.config.from_envvar('APP_CONFIG', silent=True)
 
 @app.route('/')
-def restlist():
+def index():
     return "New Restarant Service HomePage"
 
 
@@ -50,10 +51,10 @@ def update(rest_id):
         path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'update.html')
         return render_template_string(open(path).read(), rest=rest)
     elif request.method == 'POST':
-        new_rest_name = request.form['new_name']    
+        new_rest_name = request.form['new_name']
         edit_rest_id(rest_id, new_rest_name)
         return redirect(url_for('listall'))
-    
+
 #delete - delete a restaurant
 @app.route('/delete/<int:rest_id>', methods=['POST', 'GET'])
 def delete(rest_id):
@@ -62,7 +63,7 @@ def delete(rest_id):
         path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'delete.html')
         return render_template_string(open(path).read(), rest=rest)
     elif request.method == 'POST':
-        confirm = request.form['submit']    
+        confirm = request.form['submit']
         if confirm == "Yes":
             delete_rest(rest_id)
         return redirect(url_for('listall'))
