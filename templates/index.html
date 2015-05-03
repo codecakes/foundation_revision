@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block html_attribs %} lang="en" {% endblock %}
+
+{% block head %}
+    {{super()}}
+
+    {% block metas %}
+        {{super()}}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" rel="dns-prefetch">
+        <meta name="description" content="New Restaurant Service">
+        <meta name="author" content="Akul M">
+    {% endblock %}
+
+    {% block title %}
+        <title>
+            Launching the new Restaurant Service
+        </title>
+    {% endblock %}
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Header -->
+        <header>
+            <div class="container">
+              <div class="intro-text">
+                <div class="intro-lead-in">A Debt-free Commons Voucher.
+                  <br>Loved by LOHAS community.
+                </div>
+                <div class="intro-heading">The Future of Money</div>
+                <a href="#about" class="page-scroll btn btn-xl">Know More</a>
+              </div>
+            </div>
+        </header>
+
+
+{% endblock %}
