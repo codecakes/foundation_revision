@@ -14,7 +14,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "New Restarant Service HomePage"
+    #path = os.path.join(os.getcwd(), 'web','templates', 'index.html')
+    #return render_template_string(open(path).read())
+    return render_template('index.html')
+    
 
 
 ##All Restaurant Object Operations
@@ -22,8 +25,9 @@ def index():
 @app.route('/new', methods=['POST', 'GET'])
 def new():
     if request.method == 'GET':
-        path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'new.html')
-        return render_template_string(open(path).read())
+        #path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'new.html')
+        #return render_template_string(open(path).read())
+        return render_template('rest/new.html')
     elif request.method == 'POST':
         rest_name = request.form['restaurantname']
         create_new_rest(rest_name)
@@ -36,11 +40,12 @@ def listall():
     print "rest list is"
     print rest_list
     if rest_list:
-        path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'listrest.html')
-        return render_template_string(open(path).read(),  rest_list=rest_list)
+        #path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'listrest.html')
+        #return render_template_string(open(path).read(),  rest_list=rest_list)
         #following Works
         #for r in rest_list:
         #    return str(r.name)
+        return render_template('rest/listrest.html')
     else: return "Nothing!"
 
 #update - edit existing restaurants
@@ -48,8 +53,9 @@ def listall():
 def update(rest_id):
     rest = find_rest_name_by_id(rest_id)
     if request.method == 'GET':
-        path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'update.html')
-        return render_template_string(open(path).read(), rest=rest)
+        #path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'update.html')
+        #return render_template_string(open(path).read(), rest=rest)
+        return render_template('rest/update.html')
     elif request.method == 'POST':
         new_rest_name = request.form['new_name']
         edit_rest_id(rest_id, new_rest_name)
@@ -60,8 +66,9 @@ def update(rest_id):
 def delete(rest_id):
     rest = find_rest_name_by_id(rest_id)
     if request.method == 'GET':
-        path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'delete.html')
-        return render_template_string(open(path).read(), rest=rest)
+        #path = os.path.join(os.getcwd(), 'web','templates', 'rest', 'delete.html')
+        #return render_template_string(open(path).read(), rest=rest)
+        return render_template('rest/delete.html')
     elif request.method == 'POST':
         confirm = request.form['submit']
         if confirm == "Yes":
