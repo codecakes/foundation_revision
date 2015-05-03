@@ -1,20 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" rel="dns-prefetch">
-  <meta name="description" content="SignUp with a new Restaurant">
-  <meta name="author" content="Akul M">
-</head>
-<body>
-  <div class="row">
-    <form action="{{ url_for('update', rest_id=rest.id_) }}" method=post class=update>
-      Restaurant Name:<br>
-      <input type="text" name="new_name" value="{{ rest.name }}">
-      <br><br>
-      <input type=submit value="Submit">
-    </form>
-  </div>
-</body>
-</html>
+
+    {% block content %}
+         <div class="row">
+            <form action="{{ url_for('update', rest_id=rest.id_) }}" method=post class=update>
+              Restaurant Name:<br>
+              <input type="text" name="new_name" value="{{ rest.name }}">
+              <br><br>
+              <input type=submit value="Submit">
+            </form>
+          </div>
+    {% endblock %}
+
+
