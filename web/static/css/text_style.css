@@ -1,0 +1,34 @@
+.thin-head-text {
+  color:#747704;
+  font-weight: 200;
+}
+
+.bold-caption-text  {
+  color:#BCBBBB;
+  font-weight: 300;
+}
+
+.title-logo {
+  margin-top:20px;
+}
+
+.title-header {
+  margin-top:10px;
+}
+
+
+.brain {
+  text-align: center;
+  background-attachment: scroll;
+  background-image: url(../img/brain.jpg);
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.pad-container {
+  padding-top: 90px;
+}
