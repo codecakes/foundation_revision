@@ -2,6 +2,7 @@
 
 ##CONFIG BLOCK##
 import os, sys
+import sqlite3
 
 #import sql orm attribute types and column
 from sqlalchemy import Column, ForeignKey, Integer, String, \
@@ -20,6 +21,7 @@ from sqlalchemy import create_engine
 
 
 Rest_Base = declarative_base()
+#Menu_Base = declarative_base()
 #Emp_Base = declarative_base()
 ##CONFIG BLOCK##
 
@@ -41,13 +43,13 @@ class Restaurant(Rest_Base):
 
 class Menu(Rest_Base):
     #Table info
-    __tablename__ = 'menu_item'
+    __tablename__ = 'menu'
 
     #mappers
     id_ = Column(Integer, primary_key=True)
+    menuname = Column(String(200), nullable=False)
     course = Column(String(200), nullable=False)
     description = Column(String(250))
-    price = Column(String(8))
     restaurant_id = Column(Integer, ForeignKey('restaurant.id_'))
     #restaurant = relationship(Restaurant)
 
@@ -62,7 +64,7 @@ class Employee(Rest_Base):
                                 cascade='delete,delete-orphan,all')
 
 class EmpAddress(Rest_Base):
-    __tablename__ = 'emp_address'
+    __tablename__ = 'address'
     id_ = Column(Integer, primary_key=True)
     street = Column(String(250), nullable=False)
     zip_code = Column(String(10), nullable=False)
@@ -73,6 +75,6 @@ class EmpAddress(Rest_Base):
 
 def create_engine_db(Base, db_name):
     #Create SQL engine config and DB if absent
-    engine = create_engine('sqlite:///'+os.path.join('model', db_name))
+    engine = create_engine('sqlite:///'+os.path.join('model', db_name), echo=True)
     Base.metadata.create_all(engine)
     return engine

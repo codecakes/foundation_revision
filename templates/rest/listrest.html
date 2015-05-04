@@ -8,6 +8,8 @@
                 <h5>{{ r.name }}</h5>
                 <a href="{{ url_for('update', rest_id=r.id_) }}"> Edit </a>
                 <a href="{{ url_for('delete', rest_id=r.id_) }}"> Delete </a>
+                <a href="{{ url_for('create_menu', restaurantID=r.id_) }}"> New Menu </a>
+                <a href="{{ url_for('get_menus_byRestID', restaurantID=r.id_) }}"> See Menus </a>
               </li>
               {% endfor %}
             </ul>

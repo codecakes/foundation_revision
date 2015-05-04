@@ -6,7 +6,8 @@ url_for ,send_from_directory
 #from flask_bootstrap import Bootstrap
 
 from model.rest_crud import create_new_rest, \
-edit_rest_id, delete_rest, listrest, find_rest_name_by_id
+edit_rest_id, delete_rest, listrest, find_rest_name_by_id, find_rest_id, \
+create_new_menu, listmenu_restId
 
 def create_app():
   app = Flask(__name__)
@@ -84,7 +85,7 @@ def update(rest_id):
 #delete - delete a restaurant
 @app.route('/delete/<int:rest_id>', methods=['POST', 'GET'])
 def delete(rest_id):
-    rest = find_rest_name_by_id(rest_id)
+    rest = find_rest_id(rest_id)
     if request.method == 'GET':
         return render_template('rest/delete.html', rest=rest)
     elif request.method == 'POST':
@@ -93,9 +94,33 @@ def delete(rest_id):
             delete_rest(rest_id)
         return redirect(url_for('listall'))
 
-##All Restaurant Object Operations END
+##All Restaurant CRUD Operations END
 
+### Restaurant's Menu Operation ###
+#Create a Menu Item
+@app.route('/<int:restaurantID>/createMenu', methods=['POST', 'GET'])
+def create_menu(restaurantID):
+    rest = find_rest_id(restaurantID)
+    if rest.id_ == restaurantID:
+        if request.method == 'POST':
+            create_new_menu(restaurantID, *[request.form[i] \
+            for i in ('menu_name', 'course', 'description')])
+            return redirect(url_for('listall'))
+        else:
+            return render_template('menu/create.html', rest = rest)
+    else: return "Wrong Restaurant ID!"
+        
+    
+#GETs all Menus of a Restaurant - show Restaurant's Menus Page.
+@app.route('/<int:restaurantID>/showMenu')
+def get_menus_byRestID(restaurantID):
+    menus = listmenu_restId(restaurantID)
+    rest = find_rest_id(restaurantID)
+    return render_template('menu/listMenubyrest.html', \
+                            menus=menus, rest = rest)
+    
 
+### Restaurant's Menu Operation ENDS###
 if __name__ == "__main__":
     port = 8080
     hostname = '0.0.0.0'
