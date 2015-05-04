@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+    {% block content %}
+
+        <div class="createMenu">
+            <form action="{{ url_for('create_menu', restaurantID=rest.id_) }}" method=post class=new>
+                Create a Menu for {{ rest.name }}:<br>
+                <input type="text" name="menu_name" placeholder="Menu Name">
+                <input type="text" name="course" placeholder="Course Type">
+                <input type="text" name="description" placeholder="Description for the Menu and Course Type">
+                <br><br>
+                <input type=submit value="Submit">
+                <a href="{{ url_for('listall') }}">
+                  <input type="button" value="Cancel" />
+              </a>
+            </form>
+        </div>
+
+
+    {% endblock %}

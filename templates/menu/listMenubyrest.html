@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% if menus %}
+        <div class="row">
+                <ul id="menus">
+
+                      {% for menu in menus %}
+                      <li>
+                        <h5>{{ menu.menuname }}</h5>
+                          <h6> {{ menu.course }} </h6>
+                          <p>
+                              {{ menu.description }}
+                          </p>
+                          <br />
+
+                      </li>
+                      {% endfor %}
+                </ul>
+        </div>
+    {% endif %}
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ url_for('create_menu', restaurantID=rest.id_) }}" margin-left="40px">
+                    <input type="button" value="Create New Menu">
+                </a>
+                <a href="{{ url_for('listall') }}" margin-left="40px">
+                    <input type="button" value="Back">
+                </a>
+            </div>
+        </div>
+    {% endblock %}
