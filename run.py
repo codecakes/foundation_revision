@@ -46,7 +46,7 @@ def index():
 
 
 
-##All Restaurant Object Operations
+##All Restaurant Object CRUD Operations
 #create - new restaurant
 @app.route('/new', methods=['POST', 'GET'])
 def new():
